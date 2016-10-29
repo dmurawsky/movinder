@@ -1,0 +1,16 @@
+{
+  "name": "movinder",
+  "version": "0.0.1",
+  "description": "Find movies available on the www.omdbapi.com API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Daniel Murawsky <d.r.murawsky@gmail.com> (https://github.com/dmurawsky)",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "express": "^4.12.2",
+    "node-uuid": "^1.4.7"
+  }
+}

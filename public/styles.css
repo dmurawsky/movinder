@@ -1,0 +1,28 @@
+#homepage, #detailpage{
+    display:none;
+    margin-top:50px;
+}
+.details{
+    padding:10px;
+}
+.movie{
+  border:solid 1px #DDD;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  margin-bottom: 15px;
+}
+img{
+    max-width:100%;
+}
+#loading{
+    text-align:center;
+    margin:50px;
+}
+#home-btn{
+    text-align: right;
+}
+@media(max-width: 992px) {
+    #home-btn{
+        text-align: left;
+    }
+}
