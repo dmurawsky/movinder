@@ -12,6 +12,10 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
+app.get('/uuid', function(req, res){
+  res.send({uuid:uuid.v1()});
+});
+
 app.get('/favorites/:uuid', function(req, res){
   var uuid = req.params.uuid;
   if (!uuid)
@@ -21,19 +25,6 @@ app.get('/favorites/:uuid', function(req, res){
     res.setHeader('Content-Type', 'application/json');
     res.send(data[uuid]);
   }
-});
-
-app.get('/uuid', function(req, res){
-  res.send({uuid:uuid.v1()});
-});
-
-app.get('/search/:query', function(req, res){
-  request(apiBase+req.params.query, function (err, resp, body) {
-    if (!err && resp.statusCode == 200) {
-      console.log(body) // Show the HTML for the Google homepage.
-    }else
-      res.send("Error");
-  })
 });
 
 app.post('/favorites', function(req, res){
