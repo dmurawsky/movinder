@@ -53,6 +53,6 @@ app.post('/favorites', function(req, res){
   }
 });
 
-app.listen(3000, function(){
+app.listen(process.evn.PORT || 3000, function(){
   console.log("Listening on port 3000");
 });
