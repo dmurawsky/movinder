@@ -1,7 +1,7 @@
 (function() {
 
   var lastPage = 0;
-  var currentHash;
+  var current = {hash:"", scroll:""};
   // Call the weather API
   init(function(resp){
     document.cookie = 'uuid='+resp.uuid;
@@ -20,8 +20,8 @@
 
   // Function to encode the search string as a url encoded search query
   function searchEncode(string){
-    var out = string.replace(/ /g, '+'); // Replaces all spaces with a plus sign
-    return out.replace(/\W/g, ''); // Removes all non-alphanumeric characters
+    return string.replace(/\W/g, '+'); // Removes all non-alphanumeric characters
+    // return out.replace(/ /g, '+'); // Replaces all spaces with a plus sign
   }
 
   // Function to decode the hash to make it human readable again
@@ -41,8 +41,7 @@
     var search = document.getElementById("searchInput").value;
     if (search.length>1){
       loading();
-      var query = search.replace(/ /g, '+');
-      query = search.replace(/\W/g, '');
+      var query = searchEncode(search);
       var obj = {s:query};
       var queryString = getQueryString(obj);
       if(history.pushState){
@@ -167,18 +166,19 @@
 
   function searchInterval(){
     var hash = window.location.hash.slice(1);
-    if (hash.length>1 && currentHash == hash){
+    if (hash.length>1 && current.hash == hash){
       var body = document.body;
       var html = document.documentElement;
       var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
       var scrollTop = Math.max(html.scrollTop, body.scrollTop);
-      if (scrollTop+window.innerHeight > (height - 50)){
+      if (scrollTop+window.innerHeight > (height - 50) && scrollTop !== current.scroll){
+        current.scroll = scrollTop;
         lastPage++;
         loadResults(hash);
       }
     }else{
       lastPage = 0;
-      currentHash = hash;
+      current.hash = hash;
       homePage(true);
       clearMovies();
     }
