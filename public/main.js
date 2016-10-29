@@ -40,6 +40,7 @@
     e.preventDefault();
     var search = document.getElementById("searchInput").value;
     if (search.length>1){
+      loading();
       var query = search.replace(/ /g, '+');
       query = search.replace(/\W/g, '');
       var obj = {s:query};
@@ -155,12 +156,12 @@
 
   function loadResults(hash, page){
     if (hash){
+      loading();
       ajax("https://www.omdbapi.com/?"+hash+"&page="+(lastPage>1?lastPage:1),function(resp){
         listMovies(resp.Search);
+        loading(true);
         homePage();
       });
-    }else{
-
     }
   }
 

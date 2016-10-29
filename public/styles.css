@@ -1,9 +1,9 @@
 #homepage, #detailpage{
-    display:none;
-    margin-top:50px;
+  display:none;
+  margin-top:50px;
 }
 .details{
-    padding:10px;
+  padding:10px;
 }
 .movie{
   border:solid 1px #DDD;
@@ -12,11 +12,12 @@
   margin-bottom: 15px;
 }
 img{
-    max-width:100%;
+  max-width:100%;
 }
 #loading{
-    text-align:center;
-    margin:50px;
+  text-align:center;
+  margin:50px;
+  display:none;
 }
 #home-btn{
     text-align: right;
