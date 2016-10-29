@@ -155,7 +155,7 @@
 
   function loadResults(hash, page){
     if (hash){
-      ajax("http://www.omdbapi.com/?"+hash+"&page="+(lastPage>1?lastPage:1),function(resp){
+      ajax("https://www.omdbapi.com/?"+hash+"&page="+(lastPage>1?lastPage:1),function(resp){
         listMovies(resp.Search);
         homePage();
       });
